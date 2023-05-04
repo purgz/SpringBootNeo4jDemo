@@ -8,6 +8,9 @@ import com.example.demo.request.CreateStudentRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
@@ -20,6 +23,7 @@ public class StudentService {
 
 
     public Student createStudent(CreateStudentRequest createStudentRequest, String departmentName){
+
 
         Department department = departmentRepository.findByName(departmentName);
         if(department==null){
@@ -36,8 +40,15 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public void deleteStudent(long id){
+    public String deleteStudent(long id){
 
         studentRepository.deleteById(id);
+        return "Delete student";
+    }
+
+    public List<Student> readAllStudents(){
+        List<Student> students = new ArrayList<>();
+        students = studentRepository.findAll();
+        return students;
     }
 }

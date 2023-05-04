@@ -5,6 +5,8 @@ import com.example.demo.request.CreateStudentRequest;
 import com.example.demo.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StudentController {
 
@@ -21,7 +23,14 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/delete/{id}")
-    public void deleteStudent(@PathVariable long id){
-        studentService.deleteStudent(id);
+    public String deleteStudent(@PathVariable long id){
+        return studentService.deleteStudent(id);
     }
+
+    @GetMapping("/students/readAll")
+    public List<Student> readAllStudents(){
+        return studentService.readAllStudents();
+    }
+
+
 }
