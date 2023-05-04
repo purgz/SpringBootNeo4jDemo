@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Student;
 import com.example.demo.request.CreateStudentRequest;
+import com.example.demo.request.UpdateStudentRequest;
 import com.example.demo.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,8 @@ public class StudentController {
         return studentService.readAllStudents();
     }
 
-
+    @PostMapping("/students/updatestudent")
+    public Student updateStudent(@RequestBody UpdateStudentRequest updateStudentRequest){
+        return studentService.updateStudent(updateStudentRequest);
+    }
 }
